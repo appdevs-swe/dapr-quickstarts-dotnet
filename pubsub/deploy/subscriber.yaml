@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subscriberapp
+  labels:
+    app: subscriber
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: subscriber
+  template:
+    metadata:
+      labels:
+        app: subscriber
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "subscriber"
+        dapr.io/app-port: "80"
+    spec:
+      containers:
+      - name: subscriber
+        image: kostapetanregistry.azurecr.io/pubsub/subscriber:v1
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Always
