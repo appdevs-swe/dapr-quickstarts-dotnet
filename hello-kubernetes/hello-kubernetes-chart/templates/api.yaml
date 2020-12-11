@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apiapp
+  labels:
+    app: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "api"
+        dapr.io/app-port: "{{ .Values.serviceTargetPort}}"
+    spec:
+      containers:
+      - name: api
+        image: {{ .Values.imageRegistry}}/api:{{ .Values.dockerTag}}
+        ports:
+        - containerPort: {{ .Values.serviceTargetPort}}
+        imagePullPolicy: Always
