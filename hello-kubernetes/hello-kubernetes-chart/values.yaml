@@ -1,0 +1,8 @@
+# Replace this with your repository
+imageRegistry: "kostapetanregistry.azurecr.io/hello-kubernetes"
+# The tag of the images to be deployed
+dockerTag: "v1"
+# The host address of the redis master pod
+redisHost: "redis-master.default.svc.cluster.local:6379"
+servicePort: 80
+serviceTargetPort: 80

@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: apiapp
+  labels:
+    app: api
+spec:
+  selector:
+    app: api
+  ports:
+  - protocol: TCP
+    port: {{ .Values.servicePort}}
+    targetPort: {{ .Values.serviceTargetPort}}
+  type: LoadBalancer
